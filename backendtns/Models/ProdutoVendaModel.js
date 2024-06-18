@@ -54,7 +54,7 @@ async function deletar1ProdutoVenda(id) {
     let pool = await sql.connect(dbConfig);
     let result = await pool.request()
       .input('id', sql.Int, id)
-      .query('DELETE FROM VENDAS WHERE id = @id');
+      .query('DELETE FROM PRODUTOS_VENDA WHERE id = @id');
     
     return result.rowsAffected[0]; // Retorna o número de linhas afetadas
   } catch (err) {
@@ -68,7 +68,7 @@ async function deletarProdutosVenda(id_venda) {
       let pool = await sql.connect(dbConfig);
       let result = await pool.request()
         .input('id_venda', sql.Int, id_venda)
-        .query('DELETE FROM VENDAS WHERE id_venda = @id_venda');
+        .query('DELETE FROM PRODUTOS_VENDA WHERE id_venda = @id_venda');
       
       return result.rowsAffected[0]; // Retorna o número de linhas afetadas
     } catch (err) {

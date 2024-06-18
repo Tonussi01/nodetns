@@ -12,9 +12,9 @@ router.get('/produtosvenda', ProdutoVendaController.listarProdutosVendas);
 router.get('/produtosvenda/:id_venda', ProdutoVendaController.listarProdutosPorIdVenda);
 
 // Rota para deletar um produto vinculado a uma venda específica por ID do produto
-router.delete('/produtosvenda/:id', ProdutoVendaController.deletar1ProdutoVenda);
+router.delete('/delprodutovenda/:id', ProdutoVendaController.deletar1ProdutoVenda);
 
 // Rota para deletar todos os produtos vinculados a uma venda específica por ID da venda
-router.delete('/produtosvenda/:id_venda', ProdutoVendaController.deletarProdutosVenda);
+router.delete('/delprodutosvenda/:id_venda', ProdutoVendaController.deletarProdutosVenda);
 
 module.exports = router;
