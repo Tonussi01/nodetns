@@ -35,6 +35,20 @@ async function listarVendas() {
   }
 }
 
+async function listarVendaPorId(id) {
+  try {
+    let pool = await sql.connect(dbConfig);
+    let result = await pool.request()
+      .input('id', sql.Int, id) // Aqui utilizamos o parâmetro 'id' para filtrar pela ID desejada
+      .query('SELECT id, cliente, valor_compra, valor_custo_produtos, situacao, forma_pagamento, local_compra, data_venda FROM VENDAS WHERE id = @id');
+    
+    return result.recordset[0]; // Retorna a primeira venda encontrada com o ID especificado
+  } catch (err) {
+    console.error('Erro ao buscar venda por ID:', err);
+    throw err;
+  }
+}
+
 async function editarVenda(id, obj) {
     try {
       let pool = await sql.connect(dbConfig);
@@ -82,4 +96,4 @@ async function deletarVenda(id) {
   }
 }
 
-module.exports = { inserirVenda, listarVendas, editarVenda, deletarVenda };
+module.exports = { inserirVenda, listarVendas, editarVenda, deletarVenda, listarVendaPorId };

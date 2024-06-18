@@ -11,6 +11,20 @@ async function inserirVenda(req, res) {
   }
 }
 
+async function listarVendaPorId(req, res) {
+  try {
+    const venda = await VendaModel.listarVendaPorId(req.params.id); // Passa o ID via req.params.id
+    if (!venda) {
+      res.status(404).send('Venda não encontrada');
+      return;
+    }
+    res.status(200).json(venda);
+  } catch (err) {
+    console.error('Erro ao buscar venda por ID:', err);
+    res.status(500).send('Erro ao buscar venda por ID');
+  }
+}
+
 async function listarVendas(req, res) {
   try {
     const vendas = await VendaModel.listarVendas();
@@ -41,4 +55,4 @@ async function deletarVenda(req, res) {
   }
 }
 
-module.exports = { inserirVenda, listarVendas, editarVenda, deletarVenda };
+module.exports = { inserirVenda, listarVendas, editarVenda, deletarVenda, listarVendaPorId };
